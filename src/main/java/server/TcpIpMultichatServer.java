@@ -1,4 +1,4 @@
-package _ch16;
+package main.java.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutput;
