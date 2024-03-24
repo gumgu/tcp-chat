@@ -11,14 +11,12 @@ import java.util.Map;
 
 public class Dispatcher {
 
-    Socket socket;
     RoomManager roomManager;
 
     private final Map<String, MyHandlerAdapter> handlerMappingMap = new HashMap<>();
     private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
 
-    public Dispatcher(Socket socket) {
-        this.socket = socket;
+    public Dispatcher() {
         this.roomManager = new RoomManager();
         initHandlerMappingMap();
         initHandlerAdapters();
@@ -37,9 +35,9 @@ public class Dispatcher {
         handlerAdapters.add(new FileListHandler());
     }
 
-    public void run(String protocol) {
+    public void run(String protocol, Socket socket) {
         MyHandlerAdapter handler = getHandler(protocol);
-        handler.process();
+        handler.process(socket);
     }
 
     private MyHandlerAdapter getHandler(String protocol) {
