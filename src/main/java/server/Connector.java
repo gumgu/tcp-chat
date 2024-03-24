@@ -30,6 +30,10 @@ public class Connector {
         new Connector().start();
     }
 
+    public Connector() {
+        this.dispatcher = new Dispatcher();
+    }
+
     public void start() {
         ServerSocket serverSocket = null;
         Socket socket = null;
@@ -52,8 +56,7 @@ public class Connector {
 
                 String protocol = in.readUTF();
 
-                this.dispatcher = new Dispatcher(socket);
-                dispatcher.run(protocol);
+                dispatcher.run(protocol, socket);
             }
         } catch(Exception e) {
             e.printStackTrace();
