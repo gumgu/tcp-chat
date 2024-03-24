@@ -65,7 +65,7 @@ public class TcpIpMultichatClient {
                 }
 
                 while (out != null) {
-                    out.writeUTF("[" + name + "]" + scanner.nextLine());
+                    out.writeUTF(scanner.nextLine());
                 }
             } catch (IOException e) {
             }

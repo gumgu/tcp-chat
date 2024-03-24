@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class RoomManager {
 
@@ -15,9 +16,15 @@ public class RoomManager {
         return rooms.get(roomId);
     }
 
+    // 여기에 방 이름을 조회하는 메서드를 추가합니다.
+    public Set<String> getRoomNames() {
+        return rooms.keySet();
+    }
+
     public void createRoom(String roomId) {
         if (!rooms.containsKey(roomId)) {
             rooms.put(roomId, Collections.synchronizedMap(new HashMap<>()));
+            System.out.println("rooms: " + rooms.toString());
         }
     }
 
@@ -27,13 +34,13 @@ public class RoomManager {
         }
     }
 
-    public void sendToRoomClients(String roomId, String msg) {
+    public void sendToRoomClients(String roomId, String writer, String msg) {
         Map<String, DataOutputStream> roomClients = rooms.get(roomId);
 
         if(roomClients != null) {
             for (DataOutputStream out : roomClients.values()) {
                 try {
-                    out.writeUTF(msg);
+                    out.writeUTF("[" + writer + "] " + msg);
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
