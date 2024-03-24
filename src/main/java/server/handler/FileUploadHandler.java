@@ -1,5 +1,7 @@
 package main.java.server.handler;
 
+import java.net.Socket;
+
 public class FileUploadHandler implements MyHandlerAdapter {
     @Override
     public boolean support(Object handler) {
@@ -7,7 +9,7 @@ public class FileUploadHandler implements MyHandlerAdapter {
     }
 
     @Override
-    public void process() {
+    public void process(Socket socket) {
 
     }
 }
