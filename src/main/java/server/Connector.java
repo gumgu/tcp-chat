@@ -8,14 +8,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- *             String protocol = in.readUTF();
- *             String[] tokens = protocol.split("/");
- *
- *             String domain = tokens[0];
- *             String action = tokens[1];
- *             String parameter = tokens.length > 2 ? tokens[2] : null;
- */
 public class Connector {
 
     private static final int PORT = 7777;
@@ -43,7 +35,7 @@ public class Connector {
             System.out.println("서버가 시작되었습니다.");
 
             while(true) {
-                socket = serverSocket.accept();
+                 socket = serverSocket.accept();
 
                 //todo protocol 파싱 코드 위치 고민
                 this.socket = socket;
