@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class RoomManager {
 
+    // clients: 쓰레드
+    // java의 POJO 클래스???
     private final Map<String, Map<String, DataOutputStream>> rooms
             = Collections.synchronizedMap(new HashMap<>());
 

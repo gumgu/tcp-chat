@@ -17,7 +17,7 @@ public class TcpIpMultichatClient {
         System.out.println("파일 목록 조회: 'FILE/LIST'");
         System.out.println("파일 업로드: 'FILE/UPLOAD'");
         System.out.println("파일 다운로드: 'FILE/DOWNLOAD'");
-        System.out.println("채팅 목록 조회: 'CHAT/LIST'");
+        System.out.println("채팅방 목록 조회: 'CHAT/LIST'");
         System.out.println("채팅방 생성: 'CHAT/CREATE'");
         System.out.println("채팅방 입장: 'CHAT/ENTER'");
         protocol = scanner.nextLine();
