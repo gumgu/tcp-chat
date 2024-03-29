@@ -1,6 +1,7 @@
 package main.java.server.handler;
 
-import main.java.server.manager.RoomManager;
+import main.java.server.chat.RoomManager;
+import main.java.server.clientHandler.ClientConnection;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,48 +22,48 @@ public class ChatEnterHandler implements MyHandlerAdapter {
     }
 
     @Override
-    public void process(Socket socket) {
+    public void process(ClientConnection conn, String content) {
         System.out.println("ChatEnterHandler 실행");
 
-        ServerReceiver thread = new ServerReceiver(socket);
-        thread.start();
+//        ServerReceiver thread = new ServerReceiver(conn.getSocket());
+//        thread.start();
     }
-
-    class ServerReceiver extends Thread {
-        Socket socket;
-        DataInputStream in;
-        DataOutputStream out;
-
-        ServerReceiver(Socket socket) {
-            this.socket = socket;
-            try {
-                in = new DataInputStream(socket.getInputStream());
-                out = new DataOutputStream(socket.getOutputStream());
-            } catch(IOException e) {}
-        }
-
-        public void run() {
-            String name = "";
-            String roomId = "";
-
-            try {
-                out.writeUTF("이름을 입력해주세요");
-                name = in.readUTF();
-
-                out.writeUTF("참여할 채탕빙의 이름을 입력해주세요");
-                roomId = in.readUTF();
-
-                roomManager.enterRoom(roomId, name, out);
-
-                while(in != null) {
-                    String msg = in.readUTF();
-                    roomManager.sendToRoomClients(roomId, name, msg);
-                }
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-        } // run
-
-    } // ReceiverThread
+//
+//    class ServerReceiver extends Thread {
+//        Socket socket;
+//        DataInputStream in;
+//        DataOutputStream out;
+//
+//        ServerReceiver(Socket socket) {
+//            this.socket = socket;
+//            try {
+//                in = new DataInputStream(socket.getInputStream());
+//                out = new DataOutputStream(socket.getOutputStream());
+//            } catch(IOException e) {}
+//        }
+//
+//        public void run() {
+//            String name = "";
+//            String roomId = "";
+//
+//            try {
+//                out.writeUTF("이름을 입력해주세요");
+//                name = in.readUTF();
+//
+//                out.writeUTF("참여할 채탕빙의 이름을 입력해주세요");
+//                roomId = in.readUTF();
+//
+//                roomManager.enterRoom(roomId, name, out);
+//
+//                while(in != null) {
+//                    String msg = in.readUTF();
+//                    roomManager.sendToRoomClients(roomId, name, msg);
+//                }
+//            } catch(IOException e) {
+//                e.printStackTrace();
+//            }
+//        } // run
+//
+//    } // ReceiverThread
 }
 

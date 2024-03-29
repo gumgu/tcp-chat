@@ -1,5 +1,6 @@
 package main.java.server;
 
+import main.java.server.clientHandler.ClientConnection;
 import main.java.server.dispatch.Dispatcher;
 
 import java.io.DataInputStream;
@@ -11,11 +12,6 @@ import java.net.Socket;
 public class Connector {
 
     private static final int PORT = 7777;
-
-    private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
-
     private Dispatcher dispatcher;
 
     public static void main(String[] args) {
@@ -35,20 +31,9 @@ public class Connector {
             System.out.println("서버가 시작되었습니다.");
 
             while(true) {
-                 socket = serverSocket.accept();
-
-                //todo protocol 파싱 코드 위치 고민
-                this.socket = socket;
-                try {
-                    in = new DataInputStream(socket.getInputStream());
-                    out = new DataOutputStream(socket.getOutputStream());
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
-
-                String protocol = in.readUTF();
-
-                dispatcher.run(protocol, socket);
+                socket = serverSocket.accept();
+                ClientConnection clientConnection = new ClientConnection(socket, dispatcher);
+                new Thread(clientConnection).start();
             }
         } catch(Exception e) {
             e.printStackTrace();
