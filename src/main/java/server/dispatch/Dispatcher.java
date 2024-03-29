@@ -1,7 +1,8 @@
 package main.java.server.dispatch;
 
+import main.java.server.clientHandler.ClientConnection;
 import main.java.server.handler.*;
-import main.java.server.manager.RoomManager;
+import main.java.server.chat.RoomManager;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -35,9 +36,9 @@ public class Dispatcher {
         handlerAdapters.add(new FileListHandler());
     }
 
-    public void run(String protocol, Socket socket) {
+    public void run(String protocol, String content, ClientConnection conn) {
         MyHandlerAdapter handler = getHandler(protocol);
-        handler.process(socket);
+        handler.process(conn, content);
     }
 
     private MyHandlerAdapter getHandler(String protocol) {

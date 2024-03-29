@@ -1,16 +1,15 @@
 package main.java.server.handler;
 
-import main.java.server.manager.RoomManager;
+import main.java.server.chat.RoomManager;
+import main.java.server.clientHandler.ClientConnection;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.util.List;
 import java.util.Set;
-
 public class ChatListHandler implements MyHandlerAdapter {
 
     private RoomManager roomManager;
-    private Socket socket;
 
     public ChatListHandler(RoomManager roomManager) {
         this.roomManager = roomManager;
@@ -22,18 +21,19 @@ public class ChatListHandler implements MyHandlerAdapter {
     }
 
     @Override
-    public void process(Socket socket) {
+    public void process(ClientConnection conn, String content) {
         System.out.println("ChatListHandler 실행");
-        this.socket = socket;
 
         try {
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            Set<String> roomNames = roomManager.getRoomNames();
-            System.out.println("romNames:" + roomNames);
-            String roomsListStr = String.join(", ", roomNames );
-            System.out.println("roomsListStr:" + roomsListStr);
+            List<String> roomIdList = roomManager.getRoomIdList();
+            System.out.println("romNames:" + roomIdList);
 
-            out.writeUTF(roomsListStr);
+            String roomListStr = String.join(", ", roomIdList);
+            System.out.println("roomsListStr:" + roomListStr);
+
+
+            DataOutputStream out = new DataOutputStream(conn.getOut());
+            out.writeUTF(roomListStr);
         } catch(IOException e) {
             e.printStackTrace();
         }

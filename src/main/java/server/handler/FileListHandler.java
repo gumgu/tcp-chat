@@ -1,5 +1,7 @@
 package main.java.server.handler;
 
+import main.java.server.clientHandler.ClientConnection;
+
 import java.net.Socket;
 
 public class FileListHandler implements MyHandlerAdapter {
@@ -9,7 +11,8 @@ public class FileListHandler implements MyHandlerAdapter {
     }
 
     @Override
-    public void process(Socket socket) {
+    public void process(ClientConnection conn, String content) {
+
 
     }
 }
