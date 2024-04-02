@@ -1,8 +1,6 @@
 package main.java.server.handler;
 
-import main.java.server.clientHandler.ClientConnection;
-
-import java.net.Socket;
+import main.java.server.connection.ClientConnection;
 
 public interface MyHandlerAdapter {
 

@@ -1,10 +1,9 @@
 package main.java.server.dispatch;
 
-import main.java.server.clientHandler.ClientConnection;
+import main.java.server.connection.ClientConnection;
 import main.java.server.handler.*;
 import main.java.server.chat.RoomManager;
 
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
