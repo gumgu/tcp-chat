@@ -1,12 +1,12 @@
 package main.java.server.handler;
 
 import main.java.server.chat.RoomManager;
-import main.java.server.clientHandler.ClientConnection;
+import main.java.server.connection.ClientConnection;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
+
 public class ChatListHandler implements MyHandlerAdapter {
 
     private RoomManager roomManager;

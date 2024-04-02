@@ -1,12 +1,9 @@
 package main.java.server.handler;
 
 import main.java.server.chat.RoomManager;
-import main.java.server.clientHandler.ClientConnection;
+import main.java.server.connection.ClientConnection;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 public class ChatEnterHandler implements MyHandlerAdapter {
 
@@ -24,46 +21,23 @@ public class ChatEnterHandler implements MyHandlerAdapter {
     @Override
     public void process(ClientConnection conn, String content) {
         System.out.println("ChatEnterHandler 실행");
+        String roomId = "";
+        String name = "";
 
-//        ServerReceiver thread = new ServerReceiver(conn.getSocket());
-//        thread.start();
+        try {
+            conn.printMessage("이름을 입력해주세요");
+            name = conn.getIn().readUTF();
+            conn.setName(name);
+
+            conn.printMessage("참여할 채탕빙의 이름을 입력해주세요");
+            roomId = conn.getIn().readUTF();
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+
+        roomManager.enterRoom(roomId, name, conn);
+
     }
-//
-//    class ServerReceiver extends Thread {
-//        Socket socket;
-//        DataInputStream in;
-//        DataOutputStream out;
-//
-//        ServerReceiver(Socket socket) {
-//            this.socket = socket;
-//            try {
-//                in = new DataInputStream(socket.getInputStream());
-//                out = new DataOutputStream(socket.getOutputStream());
-//            } catch(IOException e) {}
-//        }
-//
-//        public void run() {
-//            String name = "";
-//            String roomId = "";
-//
-//            try {
-//                out.writeUTF("이름을 입력해주세요");
-//                name = in.readUTF();
-//
-//                out.writeUTF("참여할 채탕빙의 이름을 입력해주세요");
-//                roomId = in.readUTF();
-//
-//                roomManager.enterRoom(roomId, name, out);
-//
-//                while(in != null) {
-//                    String msg = in.readUTF();
-//                    roomManager.sendToRoomClients(roomId, name, msg);
-//                }
-//            } catch(IOException e) {
-//                e.printStackTrace();
-//            }
-//        } // run
-//
-//    } // ReceiverThread
+
 }
 

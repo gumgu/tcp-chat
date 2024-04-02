@@ -1,11 +1,8 @@
 package main.java.server;
 
-import main.java.server.clientHandler.ClientConnection;
+import main.java.server.connection.ClientConnection;
 import main.java.server.dispatch.Dispatcher;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
