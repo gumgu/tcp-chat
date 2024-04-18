@@ -36,7 +36,7 @@
 - Spring의 Dispatcher Servlet(전략 패턴)
 - 프로토콜 형식
 
-## 적용 기술 내역
+## 이후 추가 적용할 기술 내역
 - 병렬처리
    - 쓰레드, 쓰레드
    - Thread-safe
