@@ -22,7 +22,7 @@
 
 ## 버전 별 구현사항
 - [버전1: 순수 자바를 이용한 멀티챗 기능 구헌.](https://github.com/gumgu/tcp-chat/wiki/%EB%B2%84%EC%A0%841:-%EC%88%9C%EC%88%98-%EC%9E%90%EB%B0%94%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%80%ED%8B%B0%EC%B1%97-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
-- 버전2: 채팅방 개념 추기: 자료구조(Map)와 클래스(POJO)를 통해.
+- [버전2: 채팅방 개념 추기: 자료구조(Map)와 클래스(POJO)를 통해.](https://github.com/gumgu/tcp-chat/wiki/%EB%B2%84%EC%A0%842:-%EC%B1%84%ED%8C%85%EB%B0%A9-%EA%B0%9C%EB%85%90-%EC%B6%94%EA%B0%80:-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0(Map)%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4(POJO)%EB%A5%BC-%ED%86%B5%ED%95%B4.)
 - 버전3: 배차(Dispatch)개념 도입, 전략 패턴을 이용한 성능 향상.
 - 버전4: 사용자 연결 클래스화 및 자체 프로토콜 제작
    - 전통적인 HTTP 서버와 내 서버의 연결 방식 차이점 분석.
